@@ -3,6 +3,7 @@
   margin: 0px;
   padding: 0px;
   --header-bg-color: rgb(255, 203, 181);
+  --card-bg-color: rgb(151, 171, 194, 0.2);
 }
 
 body {
@@ -12,6 +13,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   display: grid;
   grid-template-rows: 1fr 4fr 2rem;
+  gap: 1rem;
 }
 
 .header {
@@ -33,4 +35,50 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.main-content {
+  border: 5px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 1rem 1rem;
+  gap: 1rem;
+}
+
+.add-button {
+  width: 15rem;
+  height: 4rem;
+  border-radius: 4rem;
+  border: none;
+  background-color: white;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.add-button:hover {
+  background-color: rgb(242, 133, 137, 0.7);
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+div[class^="card-"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 22vw;
+  border: solid;
+  background-color: var(--card-bg-color);
+  font-size: 2rem;
+  border-radius: 4rem;
+  padding: 1rem;
+  min-width: 20rem;
 }

@@ -2,6 +2,9 @@ let myLibrary = [
   { title: "asd", author: "sdf", pages: 123, isRead: false },
   { title: "asd", author: "sdf", pages: 123, isRead: false },
   { title: "asd", author: "sdf", pages: 123, isRead: false },
+  { title: "asd", author: "sdf", pages: 123, isRead: false },
+  { title: "asd", author: "sdf", pages: 123, isRead: false },
+  { title: "asd", author: "sdf", pages: 123, isRead: false },
 ];
 
 function Book(title, author, pages, isRead) {
