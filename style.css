@@ -26,6 +26,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--header-bg-color);
+  box-shadow: 5px 5px;
 }
 
 .footer {
@@ -72,13 +73,21 @@ body {
 div[class^="card-"] {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   gap: 5px;
   width: 22vw;
   border: solid;
   background-color: var(--card-bg-color);
   font-size: 2rem;
-  border-radius: 4rem;
+  border-radius: 1rem;
   padding: 1rem;
   min-width: 20rem;
+  box-shadow: 5px 5px 5px 5px rgb(118, 127, 166, 0.5);
+}
+
+div[class^="card-"] > button {
+  font-size: 2rem;
+  width: 100%;
+  border-radius: 3rem;
 }
