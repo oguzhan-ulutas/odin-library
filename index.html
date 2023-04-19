@@ -14,7 +14,22 @@
         Library
     </div>
     <div class="main-content">
-        <button class="add-button">Add Book</button>
+        <button class="add-button">Add New Book</button>
+        <div class="form-container">
+            <form action="">
+                <fieldset>
+                    <legend>New Book</legend>
+                    <input type="text" id="title" name="title" placeholder="title" required>
+                    <input type="text" id="author" name="author" placeholder="author" required>
+                    <input type="number" id="pages" name="pages" placeholder="pages" required>
+                    <div>
+                        <label for="isRead">Have you read it?</label>
+                        <input type="checkbox" id="isRead" name="isRead" checked>
+                    </div>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
         <div class="cards"></div>
     </div>
     <div class="footer">
