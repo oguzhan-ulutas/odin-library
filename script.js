@@ -45,7 +45,7 @@ function addCardElements(cardNumber) {
   card.appendChild(buttonIsRead);
   card.appendChild(buttonDelete);
 
-  if (myLibrary[cardNumber].isRead == "on") {
+  if (myLibrary[cardNumber].isRead === "on") {
     buttonIsRead.classList.add("read");
   }
 }
@@ -70,14 +70,6 @@ addNewBook.addEventListener("click", () => {
   openForm();
 });
 
-overlay.addEventListener("click", () => {
-  closeForm();
-});
-
-submit.addEventListener("click", () => {
-  closeForm();
-});
-
 function openForm() {
   overlay.classList.add("active");
   form.classList.add("active");
@@ -87,6 +79,14 @@ function closeForm() {
   overlay.classList.remove("active");
   form.classList.remove("active");
 }
+
+overlay.addEventListener("click", () => {
+  closeForm();
+});
+
+submit.addEventListener("click", () => {
+  closeForm();
+});
 
 //Remove book
 
