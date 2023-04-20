@@ -1,18 +1,11 @@
 let myLibrary = [
-  { title: "asd", author: "sdf", pages: 1, isRead: true },
-  { title: "asd", author: "sdf", pages: 2, isRead: false },
-  { title: "asd", author: "sdf", pages: 3, isRead: false },
-  { title: "asd", author: "sdf", pages: 4, isRead: false },
-  { title: "asd", author: "sdf", pages: 5, isRead: false },
-  { title: "asd", author: "sdf", pages: 6, isRead: false },
+  {
+    title: "Notes From Underground",
+    author: "Fyodor Dostoevsky",
+    pages: 124,
+    isRead: "on",
+  },
 ];
-
-function Book(title, author, pages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = false;
-}
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -52,7 +45,7 @@ function addCardElements(cardNumber) {
   card.appendChild(buttonIsRead);
   card.appendChild(buttonDelete);
 
-  if (myLibrary[cardNumber].isRead == true) {
+  if (myLibrary[cardNumber].isRead == "on") {
     buttonIsRead.classList.add("read");
   }
 }
@@ -69,17 +62,19 @@ displayBooksOnScreen();
 // Add new book button functions
 
 const addNewBook = document.querySelector(".add-button");
-const submit = document.querySelector("[type=checkbox]");
 const overlay = document.querySelector("#overlay");
 const form = document.querySelector(".form-container");
+const submit = document.querySelector("[type=submit]");
 
 addNewBook.addEventListener("click", () => {
   openForm();
 });
-submit.addEventListener("click", () => {
+
+overlay.addEventListener("click", () => {
   closeForm();
 });
-overlay.addEventListener("click", () => {
+
+submit.addEventListener("click", () => {
   closeForm();
 });
 
@@ -122,24 +117,47 @@ function readButtonToggle() {
   buttonRead.forEach((button) => {
     button.addEventListener("click", (e) => {
       const index = Number(e.target.classList.value.split("-")[1][0]);
-      console.log(e.target.classList.value.split("-"));
 
-      console.log(index);
       button.classList.toggle("read");
       changeReadStatus(index);
-
-      console.log(myLibrary[index].isRead);
-      //   myLibrary[index].isRead = true;
     });
   });
 }
 
 function changeReadStatus(index) {
-  if (myLibrary[index].isRead) {
-    myLibrary[index].isRead = false;
+  if (myLibrary[index].isRead == "on") {
+    delete myLibrary[index].isRead;
   } else {
-    myLibrary[index].isRead = true;
+    myLibrary[index].isRead = "on";
   }
 }
 
 readButtonToggle();
+
+const formTake = document.querySelector(".form");
+
+formTake.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const myFormData = new FormData(e.target);
+
+  const formDataObj = {};
+  myFormData.forEach((value, key) => (formDataObj[key] = value));
+  addBookToLibrary(formDataObj);
+
+  const cards = document.querySelectorAll("[class^=card-]");
+  cards.forEach((card) => {
+    card.remove();
+  });
+
+  displayBooksOnScreen();
+  removeBooks();
+  readButtonToggle();
+  clearForm();
+});
+
+function clearForm() {
+  const form = document.querySelectorAll(".form input");
+  form.forEach((input) => {
+    input.value = "";
+  });
+}
