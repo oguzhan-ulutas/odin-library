@@ -15,13 +15,13 @@
     </div>
     <div class="main-content">
         <button class="add-button">Add New Book</button>
-        <div class="form-container">
+        <div class="form-container" id="form-container">
             <form action="">
                 <fieldset>
                     <legend>New Book</legend>
-                    <input type="text" id="title" name="title" placeholder="title" required>
-                    <input type="text" id="author" name="author" placeholder="author" required>
-                    <input type="number" id="pages" name="pages" placeholder="pages" required>
+                    <input type="text" id="title" name="title" placeholder="*title" required>
+                    <input type="text" id="author" name="author" placeholder="*author" required>
+                    <input type="number" id="pages" name="pages" placeholder="*pages" required>
                     <div>
                         <label for="isRead">Have you read it?</label>
                         <input type="checkbox" id="isRead" name="isRead" checked>
@@ -35,6 +35,7 @@
     <div class="footer">
         The Odin Project 2023 - Coded by oguzhan-ulutas
     </div>
+    <div id="overlay"></div>
 
     <script src="./script.js"></script>
 </body>

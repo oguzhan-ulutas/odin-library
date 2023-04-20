@@ -21,6 +21,7 @@ function addBookToLibrary(book) {
 function createCard(cardNumber) {
   const cards = document.querySelector(".cards");
   const div = document.createElement("div");
+
   div.classList.add(`card-${cardNumber}`);
   cards.appendChild(div);
 }
@@ -60,3 +61,30 @@ function displayBooksOnScreen() {
 }
 
 displayBooksOnScreen();
+
+// Add new book button functions
+
+const addNewBook = document.querySelector(".add-button");
+const submit = document.querySelector("[type=checkbox]");
+const overlay = document.querySelector("#overlay");
+const form = document.querySelector(".form-container");
+
+addNewBook.addEventListener("click", () => {
+  openForm();
+});
+submit.addEventListener("click", () => {
+  closeForm();
+});
+overlay.addEventListener("click", () => {
+  closeForm();
+});
+
+function openForm() {
+  overlay.classList.add("active");
+  form.classList.add("active");
+}
+
+function closeForm() {
+  overlay.classList.remove("active");
+  form.classList.remove("active");
+}
