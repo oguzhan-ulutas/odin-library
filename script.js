@@ -1,5 +1,5 @@
 let myLibrary = [
-  { title: "asd", author: "sdf", pages: 1, isRead: false },
+  { title: "asd", author: "sdf", pages: 1, isRead: true },
   { title: "asd", author: "sdf", pages: 2, isRead: false },
   { title: "asd", author: "sdf", pages: 3, isRead: false },
   { title: "asd", author: "sdf", pages: 4, isRead: false },
@@ -51,6 +51,10 @@ function addCardElements(cardNumber) {
   card.appendChild(pPages);
   card.appendChild(buttonIsRead);
   card.appendChild(buttonDelete);
+
+  if (myLibrary[cardNumber].isRead == true) {
+    buttonIsRead.classList.add("read");
+  }
 }
 
 function displayBooksOnScreen() {
@@ -104,6 +108,7 @@ function removeBooks() {
       });
       displayBooksOnScreen();
       removeBooks();
+      readButtonToggle();
     });
   });
 }
@@ -113,12 +118,28 @@ removeBooks();
 // Read button toggle
 
 function readButtonToggle() {
-  const buttonRead = document.querySelectorAll("[class^=buttonIs]");
+  const buttonRead = document.querySelectorAll("[class*=buttonIs]");
   buttonRead.forEach((button) => {
     button.addEventListener("click", (e) => {
+      const index = Number(e.target.classList.value.split("-")[1][0]);
+      console.log(e.target.classList.value.split("-"));
+
+      console.log(index);
       button.classList.toggle("read");
+      changeReadStatus(index);
+
+      console.log(myLibrary[index].isRead);
+      //   myLibrary[index].isRead = true;
     });
   });
+}
+
+function changeReadStatus(index) {
+  if (myLibrary[index].isRead) {
+    myLibrary[index].isRead = false;
+  } else {
+    myLibrary[index].isRead = true;
+  }
 }
 
 readButtonToggle();
