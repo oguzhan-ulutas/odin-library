@@ -1,10 +1,10 @@
 let myLibrary = [
-  { title: "asd", author: "sdf", pages: 123, isRead: false },
-  { title: "asd", author: "sdf", pages: 123, isRead: false },
-  { title: "asd", author: "sdf", pages: 123, isRead: false },
-  { title: "asd", author: "sdf", pages: 123, isRead: false },
-  { title: "asd", author: "sdf", pages: 123, isRead: false },
-  { title: "asd", author: "sdf", pages: 123, isRead: false },
+  { title: "asd", author: "sdf", pages: 1, isRead: false },
+  { title: "asd", author: "sdf", pages: 2, isRead: false },
+  { title: "asd", author: "sdf", pages: 3, isRead: false },
+  { title: "asd", author: "sdf", pages: 4, isRead: false },
+  { title: "asd", author: "sdf", pages: 5, isRead: false },
+  { title: "asd", author: "sdf", pages: 6, isRead: false },
 ];
 
 function Book(title, author, pages, isRead) {
@@ -91,14 +91,21 @@ function closeForm() {
 
 //Remove book
 
-const removeBook = document.querySelectorAll("[class^=buttonDelete]");
+function removeBooks() {
+  const removeBook = document.querySelectorAll("[class^=buttonDelete-]");
+  removeBook.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const index = e.target.classList.value.split("-")[1];
+      const cards = document.querySelectorAll("[class^=card-]");
 
-removeBook.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const index = e.target.classList.value.split("-")[1];
-    const card = document.querySelector(`.card-${index}`);
-
-    myLibrary.splice(Number(index), 1);
-    card.remove();
+      myLibrary.splice(Number(index), 1);
+      cards.forEach((card) => {
+        card.remove();
+      });
+      displayBooksOnScreen();
+      removeBooks();
+    });
   });
-});
+}
+
+removeBooks();
