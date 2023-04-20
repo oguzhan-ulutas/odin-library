@@ -88,3 +88,17 @@ function closeForm() {
   overlay.classList.remove("active");
   form.classList.remove("active");
 }
+
+//Remove book
+
+const removeBook = document.querySelectorAll("[class^=buttonDelete]");
+
+removeBook.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const index = e.target.classList.value.split("-")[1];
+    const card = document.querySelector(`.card-${index}`);
+
+    myLibrary.splice(Number(index), 1);
+    card.remove();
+  });
+});
