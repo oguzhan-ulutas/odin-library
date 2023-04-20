@@ -109,3 +109,16 @@ function removeBooks() {
 }
 
 removeBooks();
+
+// Read button toggle
+
+function readButtonToggle() {
+  const buttonRead = document.querySelectorAll("[class^=buttonIs]");
+  buttonRead.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      button.classList.toggle("read");
+    });
+  });
+}
+
+readButtonToggle();
