@@ -1,4 +1,4 @@
-# odin-sign-up-form
+# odin-library
 
 [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-library) exercise to learn about html forms.
 
@@ -7,3 +7,5 @@
 **What I learned with this project;**
 
 - Objects And Object Constructors
+- The Prototype
+- Prototypal Inheritance
