@@ -3,7 +3,7 @@ const myLibrary = [
     title: 'Notes From Underground',
     author: 'Fyodor Dostoevsky',
     pages: 124,
-    isRead: 'on',
+    isRead: true,
   },
 ];
 
@@ -67,7 +67,7 @@ function addCardElements(cardNumber) {
   card.appendChild(buttonIsRead);
   card.appendChild(buttonDelete);
 
-  if (myLibrary[cardNumber].isRead === 'on') {
+  if (myLibrary[cardNumber].isRead === true) {
     buttonIsRead.classList.add('read');
   }
 }
@@ -147,10 +147,10 @@ function readButtonToggle() {
 }
 
 function changeReadStatus(index) {
-  if (myLibrary[index].isRead == 'on') {
-    delete myLibrary[index].isRead;
+  if (myLibrary[index].isRead) {
+    myLibrary[index].isRead = false;
   } else {
-    myLibrary[index].isRead = 'on';
+    myLibrary[index].isRead = true;
   }
 }
 
