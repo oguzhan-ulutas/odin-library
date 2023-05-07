@@ -18,24 +18,12 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
-const getFormData = document.querySelector('.form');
-
-getFormData.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const book = new Book(
-    e.target[1].value,
-    e.target[2].value,
-    e.target[3].value,
-    e.target[4].checked,
-  );
-
-  addBookToLibrary(book);
-  removeBooks();
-  displayBooksOnScreen();
-  readButtonToggle();
-  clearForm();
-});
+function clearAllCards() {
+  const cards = document.querySelectorAll('[class^=card-]');
+  cards.forEach((card) => {
+    card.remove();
+  });
+}
 
 function createCard(cardNumber) {
   const cards = document.querySelector('.cards');
@@ -96,9 +84,7 @@ const overlay = document.querySelector('#overlay');
 const form = document.querySelector('.form-container');
 const submit = document.querySelector('[type=submit]');
 
-addNewBook.addEventListener('click', () => {
-  openForm();
-});
+addNewBook.addEventListener('click', openForm);
 
 function openForm() {
   overlay.classList.add('active');
@@ -110,13 +96,9 @@ function closeForm() {
   form.classList.remove('active');
 }
 
-overlay.addEventListener('click', () => {
-  closeForm();
-});
+overlay.addEventListener('click', closeForm);
 
-submit.addEventListener('click', () => {
-  closeForm();
-});
+submit.addEventListener('click', closeForm);
 
 // Remove book
 
@@ -169,30 +151,29 @@ function changeReadStatus(index) {
 
 readButtonToggle();
 
-// const formTake = document.querySelector('.form');
-
-// formTake.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const myFormData = new FormData(e.target);
-
-//   const formDataObj = {};
-//   myFormData.forEach((value, key) => (formDataObj[key] = value));
-//   addBookToLibrary(formDataObj);
-
-//   const cards = document.querySelectorAll('[class^=card-]');
-//   cards.forEach((card) => {
-//     card.remove();
-//   });
-
-//   displayBooksOnScreen();
-//   removeBooks();
-//   readButtonToggle();
-//   clearForm();
-// });
-
 function clearForm() {
-  const form = document.querySelectorAll('.form input');
-  form.forEach((input) => {
+  const formInput = document.querySelectorAll('.form input');
+  formInput.forEach((input) => {
     input.value = '';
   });
 }
+
+const getFormData = document.querySelector('.form');
+
+getFormData.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const book = new Book(
+    e.target[1].value,
+    e.target[2].value,
+    e.target[3].value,
+    e.target[4].checked,
+  );
+
+  addBookToLibrary(book);
+  clearAllCards();
+  displayBooksOnScreen();
+  removeBooks();
+  readButtonToggle();
+  clearForm();
+});
