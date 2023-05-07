@@ -31,6 +31,10 @@ getFormData.addEventListener('submit', (e) => {
   );
 
   addBookToLibrary(book);
+  displayBooksOnScreen();
+  removeBooks();
+  readButtonToggle();
+  clearForm();
 });
 
 function createCard(cardNumber) {
@@ -141,6 +145,11 @@ function readButtonToggle() {
       const index = Number(e.target.classList.value.split('-')[1][0]);
 
       button.classList.toggle('read');
+      if (button.textContent === 'Read') {
+        button.textContent = 'Not Read';
+      } else {
+        button.textContent = 'Read';
+      }
       changeReadStatus(index);
     });
   });
