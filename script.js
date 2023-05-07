@@ -18,6 +18,21 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
+const getFormData = document.querySelector('.form');
+
+getFormData.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const book = new Book(
+    e.target[1].value,
+    e.target[2].value,
+    e.target[3].value,
+    e.target[4].checked,
+  );
+
+  addBookToLibrary(book);
+});
+
 function createCard(cardNumber) {
   const cards = document.querySelector('.cards');
   const div = document.createElement('div');
@@ -141,26 +156,26 @@ function changeReadStatus(index) {
 
 readButtonToggle();
 
-const formTake = document.querySelector('.form');
+// const formTake = document.querySelector('.form');
 
-formTake.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const myFormData = new FormData(e.target);
+// formTake.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const myFormData = new FormData(e.target);
 
-  const formDataObj = {};
-  myFormData.forEach((value, key) => (formDataObj[key] = value));
-  addBookToLibrary(formDataObj);
+//   const formDataObj = {};
+//   myFormData.forEach((value, key) => (formDataObj[key] = value));
+//   addBookToLibrary(formDataObj);
 
-  const cards = document.querySelectorAll('[class^=card-]');
-  cards.forEach((card) => {
-    card.remove();
-  });
+//   const cards = document.querySelectorAll('[class^=card-]');
+//   cards.forEach((card) => {
+//     card.remove();
+//   });
 
-  displayBooksOnScreen();
-  removeBooks();
-  readButtonToggle();
-  clearForm();
-});
+//   displayBooksOnScreen();
+//   removeBooks();
+//   readButtonToggle();
+//   clearForm();
+// });
 
 function clearForm() {
   const form = document.querySelectorAll('.form input');
