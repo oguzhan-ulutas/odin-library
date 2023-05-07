@@ -31,8 +31,8 @@ getFormData.addEventListener('submit', (e) => {
   );
 
   addBookToLibrary(book);
-  displayBooksOnScreen();
   removeBooks();
+  displayBooksOnScreen();
   readButtonToggle();
   clearForm();
 });
@@ -62,7 +62,11 @@ function addCardElements(cardNumber) {
   pTitle.textContent = myLibrary[cardNumber].title;
   pAuthor.textContent = myLibrary[cardNumber].author;
   pPages.textContent = myLibrary[cardNumber].pages;
-  buttonIsRead.textContent = 'Read';
+  if (myLibrary[cardNumber].isRead) {
+    buttonIsRead.textContent = 'Read';
+  } else {
+    buttonIsRead.textContent = 'Not Read';
+  }
   buttonDelete.textContent = 'Remove';
 
   card.appendChild(pTitle);
@@ -71,7 +75,7 @@ function addCardElements(cardNumber) {
   card.appendChild(buttonIsRead);
   card.appendChild(buttonDelete);
 
-  if (myLibrary[cardNumber].isRead === true) {
+  if (myLibrary[cardNumber].isRead) {
     buttonIsRead.classList.add('read');
   }
 }
